@@ -4,6 +4,7 @@ const { spawn } = require('child_process');
 const ews = require('express-ws');
 const ps = require('ps-node');
 const { version } = require('./package.json');
+const os = require('os');
 
 /**
  * @typedef {{
@@ -38,7 +39,7 @@ class InboundStreamWrapper {
     }
 
     this.stream = spawn(
-      ffmpegPath,
+      `${os.homedir()}\\AppData\\Local\\Jetsons Living\\ffmpeg.exe`,
       [
         ...(transport ? ['-rtsp_transport', transport] : []), // this must come before `-i [url]`, see #82
         '-i',
